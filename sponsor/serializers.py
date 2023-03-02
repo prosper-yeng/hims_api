@@ -26,6 +26,7 @@ class SponsorSerializer(serializers.ModelSerializer):
             "post_code",
             "created_on",
             "status",
+            'scheme_code',
             "created_by",
         ]
 

@@ -37,6 +37,7 @@ class FacilitySerializer(serializers.ModelSerializer):
             "category_name",
             "default_facility",
             "town_name",
+            "facility_code",
         ]
 
 
@@ -47,3 +48,6 @@ class CombinedUserFacilityTownSerializer(serializers.ModelSerializer):
     class Meta:
         model = Facility
         fields = "__all__"
+
+
+    

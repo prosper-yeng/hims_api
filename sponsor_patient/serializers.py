@@ -15,6 +15,8 @@ class SponsorPatientSerializer(serializers.ModelSerializer):
             "patient",
             "sponsor",
             "memberId",
+            "nhis_serial_no",
+            'card_serial_no',
             "copay_percentage",
             "bill_limit",
             "valid_from",
@@ -23,6 +25,7 @@ class SponsorPatientSerializer(serializers.ModelSerializer):
             "created_on",
             "is_deleted",
             "status",
+            "member_number",
         ]
 
 

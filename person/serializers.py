@@ -150,6 +150,7 @@ class PatientSerializer(serializers.ModelSerializer):
         fields = (
             "id",
             "title",
+            'hospital_record_no',
             "marital_status",
             "occupation",
             "religion",

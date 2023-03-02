@@ -79,6 +79,8 @@ class Facility(models.Model):
         related_name="facility_created_by",
         max_length=100,
     )
+
+    facility_code = models.CharField(max_length=100)
     created_on = models.DateTimeField(default=now)
     modified_on = models.DateTimeField(auto_now=True)
 

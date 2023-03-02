@@ -20,7 +20,7 @@ class PatientDischarge(BaseModel):
     )
     doctor = models.ForeignKey(
         Staff, on_delete=models.PROTECT, related_name="patient_discharge_doctor"
-    )
+    ,help_text='this is a user')
     reason = models.TextField()
     treatment_outcome = models.CharField(max_length=100)
 

@@ -28,6 +28,7 @@ class SponsorPatient(models.Model):
         help_text="This is the identity number used to identify the patient by the insurance other companies ",
     )
     nhis_serial_no = models.CharField("NHIS Serial Number", max_length=255, blank=True, null=True)
+    card_serial_no = models.CharField("Card Serial Number", max_length=255,null=True,blank=True)
     sponsor = models.ForeignKey(
         "sponsor.Sponsor",
         on_delete=models.CASCADE,
@@ -35,6 +36,7 @@ class SponsorPatient(models.Model):
         null=True,
         blank=True,
     )
+
     copay_percentage = models.DecimalField(max_digits=10, decimal_places=2)
     bill_limit = models.DecimalField(max_digits=10, decimal_places=2)
     created_by = models.ForeignKey(
@@ -46,6 +48,8 @@ class SponsorPatient(models.Model):
     status = models.ForeignKey(
         Status, on_delete=models.CASCADE, related_name="status_sponsor_patient"
     )
+    # member_number = models.CharField(max_length=100,null=True, blank=True)
+
     valid_from = models.DateField(default=now)
     valid_to = models.DateField(default=now)
 
