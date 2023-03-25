@@ -25,7 +25,6 @@ class SponsorPatientSerializer(serializers.ModelSerializer):
             "created_on",
             "is_deleted",
             "status",
-            "memberId",
         ]
 
 
