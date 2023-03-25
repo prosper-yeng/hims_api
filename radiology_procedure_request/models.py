@@ -27,12 +27,13 @@ class RadiologyProcedureRequest(BaseModel):
         null=True,
         blank=True,
     )
-    
+
     radiology_procedure = models.ForeignKey(
         RadiologyProcedure,
         on_delete=models.PROTECT,
         related_name="radiology_procedure_radiology_procedure_request",
     )
+
     price = models.DecimalField(max_digits=5, decimal_places=2)
     
     discount = models.DecimalField(max_digits=5, decimal_places=2)
