@@ -13,6 +13,6 @@ class RadiologyProcedureRequestViewSet(viewsets.ModelViewSet):
 
 
 class RadiologyProcedureRequesListtViewSet(viewsets.ModelViewSet):
-    # permission_classes = [IsAuthenticated]
+    permission_classes = [IsAuthenticated]
     queryset = RadiologyProcedureRequest.objects.all()
     serializer_class = RadiologyProcedureRequestListSerializer

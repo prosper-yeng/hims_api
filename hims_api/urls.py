@@ -461,13 +461,18 @@ urlpatterns = [
         ),
     ),
     # REPORTS
-    path(
+ 
+      path(
         "",
         include(
             ("reports.urls", "reports"),
             namespace="reports",
         ),
     ),
+
+
+
+
     # ADMISSION Related Routes Below
     path(
         "",

@@ -19,7 +19,7 @@ class UserSerializer(serializers.ModelSerializer):
     gender_name = serializers.CharField(source="gender.text", required=False)
     nationality_name = serializers.CharField(source="nationality.text", required=False)
     facility_name = serializers.CharField(source="facility", read_only=False)
-   
+    full_name = serializers.CharField(source="get_full_name")
 
     class Meta:
         model = User
@@ -29,6 +29,7 @@ class UserSerializer(serializers.ModelSerializer):
             "facility_name",
             "group",
             "group_name",
+            "full_name",
             "username",
             "first_name",
             "middle_name",

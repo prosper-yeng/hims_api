@@ -42,7 +42,7 @@ class SuppliersReportViewSet(generics.ListAPIView):
 
 
 class BuyersReportViewSet(generics.ListAPIView):
-    permission_classes = [IsAuthenticated]
+    # permission_classes = [IsAuthenticated]
     serializer_class = BuyerSerializer
     http_method_names = ["get"]
 
