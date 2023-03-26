@@ -45,7 +45,7 @@ class CliantInfomationViewSet(generics.ListAPIView):
 
 
 class ServicesProvidedViewSet(generics.ListAPIView):
-    # permission_classes = [IsAuthenticated]
+    permission_classes = [IsAuthenticated]
     serializer_class = ServicesProvidederializer
     http_method_names = ["get"]
 
