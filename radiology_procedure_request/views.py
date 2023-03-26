@@ -6,13 +6,13 @@ from .serializers import RadiologyProcedureRequestSerializer,RadiologyProcedureR
 
 
 class RadiologyProcedureRequestViewSet(viewsets.ModelViewSet):
-    permission_classes = [IsAuthenticated]
+    # permission_classes = [IsAuthenticated]
     queryset = RadiologyProcedureRequest.objects.all()
     serializer_class = RadiologyProcedureRequestSerializer
 
 
 
 class RadiologyProcedureRequesListtViewSet(viewsets.ModelViewSet):
-    permission_classes = [IsAuthenticated]
+    # permission_classes = [IsAuthenticated]
     queryset = RadiologyProcedureRequest.objects.all()
     serializer_class = RadiologyProcedureRequestListSerializer
