@@ -167,6 +167,15 @@ class Patient(models.Model):
         if self.user:
             return "{}".format(self.__str__())
         
+    # @property
+    # def age(self):
+    #     today = datetime.datetime.utcnow()
+    #     return today.year - int(self.user.date_of_birth.strftime('%Y'))
+    @property
+    def age(self):
+        today = datetime.datetime.utcnow()
+        age = today.year - self.user.date_of_birth.year - ((today.month, today.day) < (self.user.date_of_birth.month, self.user.date_of_birth.day))
+        return age
 
 class Staff(models.Model):
     user = models.ForeignKey(

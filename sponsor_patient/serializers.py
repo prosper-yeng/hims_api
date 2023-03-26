@@ -13,6 +13,7 @@ class SponsorPatientSerializer(serializers.ModelSerializer):
         fields = [
             "id",
             "patient",
+            "patient_name",
             "sponsor",
             "memberId",
             "nhis_serial_no",

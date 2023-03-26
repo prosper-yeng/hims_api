@@ -48,10 +48,13 @@ class SponsorPatient(models.Model):
     status = models.ForeignKey(
         Status, on_delete=models.CASCADE, related_name="status_sponsor_patient"
     )
-    # member_number = models.CharField(max_length=100,null=True, blank=True)
 
     valid_from = models.DateField(default=now)
     valid_to = models.DateField(default=now)
 
     def __str__(self):
         return "{}".format(self.patient)
+    
+    @property
+    def patient_name(self):
+        return self.patient.full_name

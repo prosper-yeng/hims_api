@@ -4,23 +4,23 @@ from rest_framework import generics
 from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.response import Response
 
-from supplier.models import Supplier
-from supplier.serializers import SupplierSerializer
+from medication.models import Medication
+from medication.serializers import MedicationDetailSerializer
 
-from buyer.models import Buyer
-from buyer.serializers import BuyerSerializer
+from consultation.models import Consultation
+from consultation.serializers import CombinedConsultationVitalSignSerializer
 
-from client.models import Client
-from client.serializers import ClientSerializer
+from diagnosis.models import Diagnosis
+from diagnosis.serializers import DiagnosisDetailSerializer
 
 
-class SuppliersReportViewSet(generics.ListAPIView):
+class DiagnosisHistoryViewSet(generics.ListAPIView):
     permission_classes = [IsAuthenticated]
-    serializer_class = SupplierSerializer
+    serializer_class = DiagnosisDetailSerializer
     http_method_names = ["get"]
 
     def get(self, request):
-        queryset = Supplier.objects.all()
+        queryset = Diagnosis.objects.all()
 
         date = request.query_params.get("date", None)
         start_date = request.query_params.get("start_date", None)
@@ -41,13 +41,13 @@ class SuppliersReportViewSet(generics.ListAPIView):
         return Response(data)
 
 
-class BuyersReportViewSet(generics.ListAPIView):
+class ConsultationHistoryViewSet(generics.ListAPIView):
     permission_classes = [IsAuthenticated]
-    serializer_class = BuyerSerializer
+    serializer_class = CombinedConsultationVitalSignSerializer
     http_method_names = ["get"]
 
     def get(self, request):
-        queryset = Buyer.objects.all()
+        queryset = Consultation.objects.all()
 
         date = request.query_params.get("date", None)
         start_date = request.query_params.get("start_date", None)
@@ -68,13 +68,15 @@ class BuyersReportViewSet(generics.ListAPIView):
         return Response(data)
 
 
-class ClientReportViewSet(generics.ListAPIView):
+class PatientsMedicalHistoryViewSet(generics.ListAPIView):
     permission_classes = [IsAuthenticated]
-    serializer_class = ClientSerializer
+    serializer_class = MedicationDetailSerializer
     http_method_names = ["get"]
 
     def get(self, request):
-        queryset = Client.objects.all()
+        queryset = Medication.objects.all().select_related(
+            "patient", "attendance", "sponsor", "prescription", "product", "status"
+        )
 
         date = request.query_params.get("date", None)
         start_date = request.query_params.get("start_date", None)

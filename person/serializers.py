@@ -9,7 +9,7 @@ from occupation.serializers import OccupationSerializer
 from person_title.serializers import PersonTitleSerializer
 from religion.serializers import ReligionSerializer
 from .models import LoggedInUserDevices
-
+import datetime
 from .models import Patient, Staff
 
 
@@ -20,6 +20,8 @@ class UserSerializer(serializers.ModelSerializer):
     nationality_name = serializers.CharField(source="nationality.text", required=False)
     facility_name = serializers.CharField(source="facility", read_only=False)
     full_name = serializers.CharField(source="get_full_name")
+    age = serializers.SerializerMethodField()
+
 
     class Meta:
         model = User
@@ -48,6 +50,7 @@ class UserSerializer(serializers.ModelSerializer):
             "is_active",
             "created_by",
             "status",
+            "age",
          
         )
 
@@ -86,6 +89,12 @@ class UserSerializer(serializers.ModelSerializer):
     # instance.save ()
 
     # return instance
+
+
+    def get_age(self, obj):
+        today = datetime.datetime.utcnow()
+        age = today.year - obj.date_of_birth.year - ((today.month, today.day) < (obj.date_of_birth.month, obj.date_of_birth.day))
+        return age
 
 
 class LoggedInUserDevicesSerializer(serializers.ModelSerializer):
@@ -148,7 +157,7 @@ class PatientSerializer(serializers.ModelSerializer):
 
     facility_name = serializers.CharField(source="user.facility", required=False)
     email = serializers.CharField(source="user.email", required=False)
-
+    age = serializers.IntegerField(read_only=True)
 
     class Meta:
         model = Patient
@@ -156,6 +165,7 @@ class PatientSerializer(serializers.ModelSerializer):
             "id",
             "title",
             'hospital_record_no',
+            'age',
             "marital_status",
             "occupation",
             "religion",
@@ -171,6 +181,7 @@ class PatientSerializer(serializers.ModelSerializer):
             "status",
             "is_deleted",
             "user",
+            
         )
 
         read_only_fields = ("id",)
