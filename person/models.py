@@ -140,7 +140,7 @@ class Patient(models.Model):
     status = models.ForeignKey(
         Status, on_delete=models.CASCADE, related_name="patient_status"
     )
-
+    
     def __str__(self):
         if self.user.middle_name:
             return "{} {} {}".format(
@@ -148,18 +148,25 @@ class Patient(models.Model):
             )
         else:
             return "{} {}".format(self.user.first_name, self.user.last_name)
+    
 
+
+    # @property
+    # def full_name(self):
+    #     if self.user.middle_name:
+    #         f_name = "{} {} {}".format(
+    #             self.user.first_name, self.user.middle_name, self.user.last_name
+    #         )
+    #     else:
+    #         f_name = "{} {}".format(self.user.first_name, self.user.last_name)
+
+    #     return "{} {}".format(self.title.text, f_name)
+    
     @property
     def full_name(self):
-        if self.user.middle_name:
-            f_name = "{} {} {}".format(
-                self.user.first_name, self.user.middle_name, self.user.last_name
-            )
-        else:
-            f_name = "{} {}".format(self.user.first_name, self.user.last_name)
-
-        return "{} {}".format(self.title.text, f_name)
-
+        if self.user:
+            return "{}".format(self.__str__())
+        
 
 class Staff(models.Model):
     user = models.ForeignKey(

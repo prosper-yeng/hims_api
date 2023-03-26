@@ -5,7 +5,7 @@ from .models import Sponsor
 
 class SponsorSerializer(serializers.ModelSerializer):
     sponsor_type_name = serializers.CharField(
-        source="sponsor_type.name", required=False
+        source="sponsor_type", required=False
     )
     town_name = serializers.CharField(source="town.name", required=False)
 

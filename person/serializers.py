@@ -15,15 +15,18 @@ from .models import Patient, Staff
 
 
 class UserSerializer(serializers.ModelSerializer):
-    group_name = serializers.CharField(source="group.name", required=False)
+    group_name = serializers.CharField(source="group", required=False)
     gender_name = serializers.CharField(source="gender.text", required=False)
     nationality_name = serializers.CharField(source="nationality.text", required=False)
+    facility_name = serializers.CharField(source="facility", read_only=False)
+   
 
     class Meta:
         model = User
         fields = (
             "id",
             "facility",
+            "facility_name",
             "group",
             "group_name",
             "username",
@@ -44,6 +47,7 @@ class UserSerializer(serializers.ModelSerializer):
             "is_active",
             "created_by",
             "status",
+         
         )
 
         read_only_fields = ("id",)
@@ -105,7 +109,6 @@ class ChangePasswordSerializer(serializers.ModelSerializer):
             "old_password",
             "password",
             "password2",
-            "created_by",
             "status",
         )
         read_only_fields = ("id",)
@@ -136,7 +139,7 @@ class PatientSerializer(serializers.ModelSerializer):
     user = UserSerializer(many=False)
 
     title_name = serializers.CharField(source="person_title.name", required=False)
-    occupation_name = serializers.CharField(source="occupation.name", required=False)
+    occupation_name = serializers.CharField(source="occupation", required=False)
     marital_status_name = serializers.CharField(
         source="marital_status.name", required=False
     )
@@ -144,6 +147,7 @@ class PatientSerializer(serializers.ModelSerializer):
 
     facility_name = serializers.CharField(source="user.facility", required=False)
     email = serializers.CharField(source="user.email", required=False)
+
 
     class Meta:
         model = Patient
