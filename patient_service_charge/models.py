@@ -11,10 +11,11 @@ from sponsor.models import Sponsor
 from status.models import Status
 
 
+# patiant_service_charges
 class PatientServiceCharge(models.Model):
     service = models.ForeignKey(Service, on_delete=models.CASCADE)
     attendance = models.ForeignKey(DailyAttendanceModel, on_delete=models.CASCADE)
-    patient = models.ForeignKey(Patient, on_delete=models.CASCADE)
+    patient = models.ForeignKey(Patient, on_delete=models.CASCADE,related_name="patiant_service_charges")
     price_individual = models.DecimalField(max_digits=10, decimal_places=2)
     price_sponsor = models.DecimalField(max_digits=10, decimal_places=2)
     sponsor = models.ForeignKey(

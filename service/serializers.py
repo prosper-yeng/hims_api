@@ -6,7 +6,7 @@ from .models import Service
 
 
 class ServiceSerializer(serializers.ModelSerializer):
-    # service_type_name = serializers.CharField(source='service_type', required=False)
+    service_category = serializers.CharField(source='service_type.name', required=False)
 
     class Meta:
         model = Service
@@ -19,6 +19,7 @@ class ServiceSerializer(serializers.ModelSerializer):
             "service_type",
             "is_deleted",
             "status",
+            "service_category",
         ]
 
     read_only_fields = ("id",)
