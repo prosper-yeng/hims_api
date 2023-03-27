@@ -27,3 +27,6 @@ class DoctorsNote(BaseModel):
         on_delete=models.CASCADE,
         related_name="doctors_note_treatment_plan",
     )
+
+    # def __str__(self):
+    #     return "{} {}".format(self.note)

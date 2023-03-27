@@ -10,6 +10,9 @@ from person.serializers import  Patient
 
 from .serializers import ClientInfomatonSerializer,ServicesProvidedSerializer,DiagnosesSerializer
 
+from doctors_note.serializers import DoctorsNote,DoctorsNoteDetailsSerializer
+
+
 class CliantInfomationViewSet(generics.ListAPIView):
 
 

@@ -8,8 +8,10 @@ from person.models import Patient
 from daily_attendance.serializers import DailyAttendanceSerializer
 
 from patient_service_charge.serializers import CombinedPatientServiceChargeSerializer
-from doctors_note.serializers import DoctorsNoteDetailsSerializer
+from patient_diagnosis.serializers import PatientDiagnosisDetailsSerializer
+from diagnosis.serializers import DiagnosisDetailSerializer
 
+from doctors_note.serializers import DoctorsNote,DoctorsNoteDetailsSerializer,DoctorsNoteSerializer
 
 class PatientSerializer(serializers.ModelSerializer):
 
@@ -95,26 +97,15 @@ class ServicesProvidedSerializer(serializers.ModelSerializer):
 
 class DiagnosesSerializer(serializers.ModelSerializer):
 
-    first_name = serializers.CharField(source="user.first_name", read_only=False)
-    last_name = serializers.CharField(source="user.last_name", read_only=False)
-    middle_name =serializers.CharField(source="user.middle_name", read_only=False)
-    diagnoses =  DoctorsNoteDetailsSerializer(many=True,read_only=True,source="doctors_note_patient")
     client_id = serializers.IntegerField(source='pk',help_text="id of the patient")
-
- 
-
+    doctors_note_patient=  DoctorsNoteSerializer(many=True,read_only=True)
+    
  
     class Meta:
         model = Patient
-        fields =['client_id',
-                 'full_name',
-                 "first_name",
-                 "last_name",
-                 "middle_name"
-,                "created_on",
-                 "modified_on",
-                 'diagnoses',
-                  
+        fields =[
+                "client_id",
+                "doctors_note_patient",
                 ]
 
  

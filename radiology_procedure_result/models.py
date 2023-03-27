@@ -21,8 +21,8 @@ class RadiologyProcedureResult(BaseModel):
         related_name="diagnosis_radiology_procedure_result",
     )
     additional_comments = models.TextField()
-    radiology_officer = models.ForeignKey(
-        Staff,
-        on_delete=models.PROTECT,
-        related_name="radiology_officer_radiology_procedure_result",
-    )
+    # radiology_officer = models.ForeignKey(
+    #     Staff,
+    #     on_delete=models.PROTECT,
+    #     related_name="radiology_officer_radiology_procedure_result",
+    # )
