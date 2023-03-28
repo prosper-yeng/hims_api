@@ -201,6 +201,7 @@ INSTALLED_APPS = [
     "procedure_schedule",
     "product_price_sponsor",
     "lab_test_price_sponsor",
+    "treatment_outcome",
 
 ]
 

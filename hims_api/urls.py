@@ -760,6 +760,17 @@ urlpatterns = [
         ),
     ),
 
+
+
+    path(
+        "",
+        include(
+            ("treatment_outcome.urls", "treatment_outcome"),
+            namespace="treatment_outcome",
+        ),
+    ),
+   
+
     # token routes below
     path("admin/", admin.site.urls),
     path("api/token/login/", TokenObtainPairView.as_view(), name="token_obtain_pair"),

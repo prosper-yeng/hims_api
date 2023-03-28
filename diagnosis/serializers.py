@@ -14,8 +14,10 @@ class DiagnosisSerializer(serializers.ModelSerializer):
             "gdrg",
             "icd_code",
             "description",
-            "status",
             "created_by",
+            "created_on",
+            "status",
+            "modified_on",
         ]
 
         read_only_fields = ("id",)
@@ -33,8 +35,11 @@ class DiagnosisDetailSerializer(serializers.ModelSerializer):
             "gdrg",
             "icd_code",
             "description",
+            "created_on",
+            "modified_on",
             "status",
             "created_by",
+          
         ]
 
         read_only_fields = ("id",)

@@ -27,7 +27,7 @@ class Address(models.Model):
         max_length=100, null=False, unique=False, verbose_name=" House Number "
     )
     digital_address = models.CharField(
-        max_length=100, null=True, unique=False, verbose_name=" Digital Address"
+        max_length=100, null=True,blank=True, unique=False, verbose_name=" Digital Address"
     )
     status = models.CharField(
         max_length=100, null=True, blank=True, choices=StatusChoice.choices

@@ -220,14 +220,20 @@ class Staff(models.Model):
 
     @property
     def full_name(self):
-        if self.user.middle_name:
-            f_name = "{} {} {}".format(
-                self.user.first_name, self.user.middle_name, self.user.last_name
-            )
-        else:
-            f_name = "{} {}".format(self.user.first_name, self.user.last_name)
+        if self.user:
+            name= "{}".format(self.__str__())
+            return name.title()
+        
+    # @property
+    # def full_name(self):
+    #     if self.user.middle_name:
+    #         f_name = "{} {} {}".format(
+    #             self.user.first_name, self.user.middle_name, self.user.last_name
+    #         )
+    #     else:
+    #         f_name = "{} {}".format(self.user.first_name, self.user.last_name)
 
-        return "{} {}".format(self.title.text, f_name)
+    #     return "{} {}".format(self.title.text, f_name)
 
 
 class UserVerificationCode(BaseModel):

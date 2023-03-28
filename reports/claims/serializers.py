@@ -13,6 +13,9 @@ from diagnosis.serializers import DiagnosisDetailSerializer
 
 from doctors_note.serializers import DoctorsNote,DoctorsNoteDetailsSerializer,DoctorsNoteSerializer
 from patient_diagnosis.serializers import PatientDiagnosisDetailsSerializer,PatientDiagnosis
+from treatment_outcome.serializers import TreatmentOutcomeeSerializer
+from patient_discharge.serializers import PatientDischargeSerializer
+
 class PatientSerializer(serializers.ModelSerializer):
 
     class Meta:
@@ -33,6 +36,7 @@ class ClientInfomatonSerializer(serializers.ModelSerializer):
     patient_attendance = DailyAttendanceSerializer(many=True,read_only=True)
 
     patient_sponsor = SponsorPatientSerializer(many=True, read_only=True)
+
 
 
     
@@ -71,8 +75,11 @@ class ServicesProvidedSerializer(serializers.ModelSerializer):
     services_provided=  CombinedPatientServiceChargeSerializer(many=True,read_only=True,source="patiant_service_charges")
     client_id = serializers.IntegerField(source='pk',help_text="id of the patient")
     num_of_visits = serializers.SerializerMethodField()
+    # treatment_outcome =  TreatmentOutcomeeSerializer(many=True,read_only=True,source="patient_discharge_patient")
+    patient_discharge_patient = PatientDischargeSerializer(many=True,read_only=True)
 
- 
+
+    
 
  
     class Meta:
@@ -86,6 +93,8 @@ class ServicesProvidedSerializer(serializers.ModelSerializer):
                  "modified_on",
                  "num_of_visits",
                  'services_provided',
+                #  "treatment_outcome",
+                "patient_discharge_patient",
                   
                 ]
 

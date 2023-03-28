@@ -20,9 +20,9 @@ class PatientDischarge(BaseModel):
     )
     doctor = models.ForeignKey(
         Staff, on_delete=models.PROTECT, related_name="patient_discharge_doctor"
-    ,help_text='this is a user')
+    ,help_text='this is a staff')
     reason = models.TextField()
-    treatment_outcome = models.CharField(max_length=100)
+    # treatment_outcome = models.CharField(max_length=100)
 
     def save(self, *args, **kwargs):
         bed_allocation = BedAllocation.objects.filter(
@@ -34,3 +34,9 @@ class PatientDischarge(BaseModel):
             bed_allocation.is_active = True
             bed_allocation.save()
         super().save(*args, **kwargs)
+    
+    @property
+    def treatment_outcome(self):
+        return self.patients_discharge.all()
+
+

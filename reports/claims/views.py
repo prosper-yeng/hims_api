@@ -50,7 +50,7 @@ class ServicesProvidedViewSet(generics.ListAPIView):
     http_method_names = ["get"]
 
     def get(self, request):
-        queryset = Patient.objects.all()
+        queryset = Patient.objects.all().order_by('id')
 
         date = request.query_params.get("date", None)
         start_date = request.query_params.get("start_date", None)
