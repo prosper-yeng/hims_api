@@ -8,15 +8,15 @@ from rest_framework.response import Response
 
 from person.serializers import  Patient
 
-from .serializers import ClientInfomatonSerializer,ServicesProvidedSerializer,DiagnosesSerializer
+from .serializers import ClientInfomatonSerializer,ServicesProvidedSerializer,PatientDiagnosisDetailsSerializer,PatientDiagnosis
 
-from doctors_note.serializers import DoctorsNote,DoctorsNoteDetailsSerializer
+# from doctors_note.serializers import DoctorsNote,DoctorsNoteDetailsSerializer
 
 
 class CliantInfomationViewSet(generics.ListAPIView):
 
 
-    # permission_classes = [IsAuthenticated]
+    permission_classes = [IsAuthenticated]
     serializer_class = ClientInfomatonSerializer
     http_method_names = ["get"]
 
@@ -45,7 +45,7 @@ class CliantInfomationViewSet(generics.ListAPIView):
 
 
 class ServicesProvidedViewSet(generics.ListAPIView):
-    # permission_classes = [IsAuthenticated]
+    permission_classes = [IsAuthenticated]
     serializer_class = ServicesProvidedSerializer
     http_method_names = ["get"]
 
@@ -72,12 +72,12 @@ class ServicesProvidedViewSet(generics.ListAPIView):
     
 
 class DiagnosesViewSet(generics.ListAPIView):
-    # permission_classes = [IsAuthenticated]
-    serializer_class = DiagnosesSerializer
+    permission_classes = [IsAuthenticated]
+    serializer_class = PatientDiagnosisDetailsSerializer
     http_method_names = ["get"]
 
     def get(self, request):
-        queryset = Patient.objects.all()
+        queryset = PatientDiagnosis.objects.all()
 
         date = request.query_params.get("date", None)
         start_date = request.query_params.get("start_date", None)

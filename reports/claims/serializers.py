@@ -12,7 +12,7 @@ from patient_diagnosis.serializers import PatientDiagnosisDetailsSerializer
 from diagnosis.serializers import DiagnosisDetailSerializer
 
 from doctors_note.serializers import DoctorsNote,DoctorsNoteDetailsSerializer,DoctorsNoteSerializer
-
+from patient_diagnosis.serializers import PatientDiagnosisDetailsSerializer,PatientDiagnosis
 class PatientSerializer(serializers.ModelSerializer):
 
     class Meta:
@@ -97,17 +97,15 @@ class ServicesProvidedSerializer(serializers.ModelSerializer):
 
 class DiagnosesSerializer(serializers.ModelSerializer):
 
-    client_id = serializers.IntegerField(source='pk',help_text="id of the patient")
-    doctors_note_patient=  DoctorsNoteSerializer(many=True,read_only=True)
+    diagnosis = PatientDiagnosisDetailsSerializer()
     
  
     class Meta:
-        model = Patient
+        model = PatientDiagnosis
         fields =[
-                "client_id",
-                "doctors_note_patient",
+                "diagnosis",
                 ]
-
+        
  
 
 
