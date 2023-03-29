@@ -23,6 +23,7 @@ class UserSerializer(serializers.ModelSerializer):
     age = serializers.SerializerMethodField()
 
 
+
     class Meta:
         model = User
         fields = (
@@ -46,7 +47,7 @@ class UserSerializer(serializers.ModelSerializer):
             "primary_phone",
             "secondary_phone",
             "photo_url",
-            # "password",
+            "password",
             "is_active",
             "created_by",
             "status",
